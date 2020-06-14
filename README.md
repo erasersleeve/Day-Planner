@@ -44,3 +44,12 @@ You are required to submit the following for review:
 
 - - -
 © 2019 Trilogy Education Services, a 2U, Inc. brand. All Rights Reserved.
+
+
+## Links
+
+Link to deployed application: https://erasersleeve.github.io/Day-Planner/
+
+Link to github: https://github.com/erasersleeve/Day-Planner
+
+## ScreenShots
