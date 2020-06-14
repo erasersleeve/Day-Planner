@@ -93,18 +93,39 @@
 		</div>
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
 		<script type ="text/javascript">
-		//simple text feild autosave using localstorage. Currently auto saves, need to add button functionality
+		//currently saves all feilds on click, not just own row. If a save button is clicked when there is no changes.. it will move all saved data down by one row.
 		    //sets the text areas to their appropriate local data if applicable
 				$(document).ready (function () {
 					$("*[data-store]").each(function () {
-						$(this).val(localStorage.getItem("item-" + $(this).attr("data-store")));
+						$(this).val(localStorage.getItem("event-" + $(this).attr("data-store")));
 					});
 					
-					//on click saves text input to local data. Currently each button saves every box
-					$(".editbtn").on("click", function (itm) {
-						localStorage.setItem ("item-" + $("*[data-store]").attr("data-store"), $("*[data-store]").val());
-					})
-    		})
+
+
+					
+					var buttonarray = document.getElementsByClassName("editbtn")
+					for (i=0; i<buttonarray.length; i++) {
+						buttonarray[i].addEventListener("click", function (itm) {
+						var ds = ($("*[data-store]"))
+						for (i=0; i<ds.length; i++) {
+							localStorage.setItem ("event-" + i, ds[i].value
+							)}
+						
+						}) 
+					}
+
+
+					
+
+
+					//set var = array of buttons
+					//set for loop to cycle through the buttons and assign on click
+				//on "keyup" saves text input to local data. Saves as soon as input is finished
+				// $("*[data-store]").on("keyup", function (itm) {
+       	 		// localStorage.setItem ("item-" + $(this).attr("data-store"), $(this).val());
+      			// })
+
+				})
 				
 
 				//grabs the date from moment.js and sets it to the appropriate class
