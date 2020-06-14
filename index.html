@@ -4,6 +4,7 @@
 		<meta charset="UTF-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 		<meta http-equiv="X-UA-Compatible" content="ie=edge" />
+		<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
 		<link
 			rel="stylesheet"
 			href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
@@ -26,74 +27,97 @@
 		<header class="jumbotron">
 			<h1 class="display-3">Work Day Scheduler</h1>
 			<p class="lead">A simple calendar app for scheduling your work day</p>
-			<p id="currentDay" class="lead">AJAX to produce current date</p>
+			<p id="currentDay" class="lead">
+				
+			</p>
 		</header>
-			<div class="container">
+		<div class="container">
 				<h2>Time Table</h2>
 				<table class="table">
 					<thead>
 						<tr>
-							<th scope="col">Time</th>
-							<th scope="col">Events</th>
-							<th scope="col">Buttons</th>
+							<th scope="col-4">Time</th>
+							<th scope="col-8">Events</th>
+							<th scope="col-4">Buttons</th>
 						</tr>
 					</thead>
 					<tbody>
 						<tr>
 							<td>9am</td>
-							<td>This will need to be editable via button and saved in local storage</td>
-							<td><button class="editbtn"></button></td>
+							<td> <input class="form-control" data-store="1" placeholder="Add Your Event Here"></input></td>
+							<td><button class="editbtn btn btn-outline-dark">Save Changes</button></td>
 						</tr>
 						<tr>
 							<td>10am</td>
-							<td>This will need to be editable via button and saved in local storage</td>
-							<td><button class="editbtn"></button></td>
+							<td><input class="form-control" data-store="2" placeholder="Add Your Event Here"></td>
+							<td><button class="editbtn btn btn-outline-dark">Save Changes</button></td>
 						</tr>
 						<tr>
 							<td>11am</td>
-							<td>This will need to be editable via button and saved in local storage</td>
-							<td><button class="editbtn"></button></td>
+							<td><input class="form-control" data-store="3" placeholder="Add Your Event Here"></td>
+							<td><button class="editbtn btn btn-outline-dark">Save Changes</button></td>
 						</tr>
 						<tr>
 							<td>12pm</td>
-							<td>This will need to be editable via button and saved in local storage</td>
-							<td><button class="editbtn"></button></td>
+							<td><input class="form-control" data-store="4" placeholder="Add Your Event Here"></td>
+							<td><button class="editbtn btn btn-outline-dark">Save Changes</button></td>
 						</tr>
 						<tr>
 							<td>1pm</td>
-							<td>This will need to be editable via button and saved in local storage</td>
-							<td><button class="editbtn"></button></td>
+							<td><input class="form-control" data-store="5" placeholder="Add Your Event Here"></td>
+							<td><button class="editbtn btn btn-outline-dark">Save Changes</button></td>
 						</tr>
 						<tr>
 							<td>2pm</td>
-							<td>This will need to be editable via button and saved in local storage</td>
-							<td><button class="editbtn"></button></td>
+							<td><input class="form-control" data-store="6" placeholder="Add Your Event Here"></td>
+							<td><button class="editbtn btn btn-outline-dark">Save Changes</button></td>
 						</tr>
 						<tr>
 							<td>3pm</td>
-							<td>This will need to be editable via button and saved in local storage</td>
-							<td><button class="editbtn"></button></td>
+							<td><input class="form-control" data-store="7" placeholder="Add Your Event Here"></td>
+							<td><button class="editbtn btn btn-outline-dark">Save Changes</button></td>
 						</tr>
 						<tr>
 							<td>4pm</td>
-							<td>This will need to be editable via button and saved in local storage</td>
-							<td><button class="editbtn"></button></td>
+							<td><input class="form-control" data-store="8" placeholder="Add Your Event Here"></td>
+							<td><button class="editbtn btn btn-outline-dark">Save Changes</button></td>
 						</tr>
 						<tr>
 							<td>5pm</td>
-							<td>This will need to be editable via button and saved in local storage</td>
-							<td><button class="editbtn"></button></td>
+							<td><input class="form-control" data-store="9" placeholder="Add Your Event Here"></td>
+							<td><button class="editbtn btn btn-outline-dark">Save Changes</button></td>
 						</tr>
 
 					</tbody>
 				</table>
-				<!-- Timeblocks go here -->
-			</div>
-
-		<script src="https://code.jquery.com/jquery-3.4.1.min.js">
-		
-		
-		</script>
+		</div>
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
+		<script type ="text/javascript">
+		//simple text feild autosave using localstorage. Currently auto saves, need to add button functionality
+		    //sets the text areas to their appropriate local data if applicable
+				$(document).ready (function () {
+					$("*[data-store]").each(function () {
+						$(this).val(localStorage.getItem("item-" + $(this).attr("data-store")));
+					});
+					
+					//on click saves text input to local data. Currently each button saves every box
+					$(".editbtn").on("click", function (itm) {
+						localStorage.setItem ("item-" + $("*[data-store]").attr("data-store"), $("*[data-store]").val());
+					})
+    		})
+				
+
+				//grabs the date from moment.js and sets it to the appropriate class
+				getDate();
+				function getDate(calendertime) {
+					//format("LL") gets rid of the extra information from momentjs.
+					var now = moment().format("LL");
+					console.log(now);
+					$("#currentDay").text(now)
+				}
+
+
+		</script>
+	
 	</body>
 </html>
