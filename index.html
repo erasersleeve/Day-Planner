@@ -44,47 +44,47 @@
 					<tbody>
 						<tr id="9" class="timeblock">
 							<td>9am</td>
-							<td> <input class="form-control" data-store="1" placeholder="Add Your Event Here"></input></td>
+							<td> <input class="form-control" data-store="0" placeholder="Add Your Event Here"></input></td>
 							<td><button class="editbtn btn btn-outline-dark">Save Changes</button></td>
 						</tr>
 						<tr id="10" class="timeblock">
 							<td>10am</td>
-							<td><input class="form-control" data-store="2" placeholder="Add Your Event Here"></td>
+							<td><input class="form-control" data-store="1" placeholder="Add Your Event Here"></td>
 							<td><button class="editbtn btn btn-outline-dark">Save Changes</button></td>
 						</tr>
 						<tr id="11" class="timeblock">
 							<td>11am</td>
-							<td><input class="form-control" data-store="3" placeholder="Add Your Event Here"></td>
+							<td><input class="form-control" data-store="2" placeholder="Add Your Event Here"></td>
 							<td><button class="editbtn btn btn-outline-dark">Save Changes</button></td>
 						</tr>
 						<tr id="12" class="timeblock">
 							<td>12pm</td>
-							<td><input class="form-control" data-store="4" placeholder="Add Your Event Here"></td>
+							<td><input class="form-control" data-store="3" placeholder="Add Your Event Here"></td>
 							<td><button class="editbtn btn btn-outline-dark">Save Changes</button></td>
 						</tr>
 						<tr id="13" class="timeblock">
 							<td>1pm</td>
-							<td><input class="form-control" data-store="5" placeholder="Add Your Event Here"></td>
+							<td><input class="form-control" data-store="4" placeholder="Add Your Event Here"></td>
 							<td><button class="editbtn btn btn-outline-dark">Save Changes</button></td>
 						</tr>
 						<tr id="14" class="timeblock">
 							<td>2pm</td>
-							<td><input class="form-control" data-store="6" placeholder="Add Your Event Here"></td>
+							<td><input class="form-control" data-store="5" placeholder="Add Your Event Here"></td>
 							<td><button class="editbtn btn btn-outline-dark">Save Changes</button></td>
 						</tr>
 						<tr id="15" class="timeblock">
 							<td>3pm</td>
-							<td><input class="form-control" data-store="7" placeholder="Add Your Event Here"></td>
+							<td><input class="form-control" data-store="6" placeholder="Add Your Event Here"></td>
 							<td><button class="editbtn btn btn-outline-dark">Save Changes</button></td>
 						</tr>
 						<tr id="16" class="timeblock">
 							<td>4pm</td>
-							<td><input class="form-control" data-store="8" placeholder="Add Your Event Here"></td>
+							<td><input class="form-control" data-store="7" placeholder="Add Your Event Here"></td>
 							<td><button class="editbtn btn btn-outline-dark">Save Changes</button></td>
 						</tr>
 						<tr id="17" class="timeblock">
 							<td>5pm</td>
-							<td><input class="form-control" data-store="9" placeholder="Add Your Event Here"></td>
+							<td><input class="form-control" data-store="8" placeholder="Add Your Event Here"></td>
 							<td><button class="editbtn btn btn-outline-dark">Save Changes</button></td>
 						</tr>
 
@@ -93,11 +93,13 @@
 		</div>
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
 		<script type ="text/javascript">
-		//currently saves all feilds on click, not just own row. If a save button is clicked when there is no changes.. it will move all saved data down by one row.
+		//currently saves all feilds on click, not just own row. Saving works fine but loading the data jumps everything up one row, deleting the top.
 		    //sets the text areas to their appropriate local data if applicable
 		$(document).ready (function () {
 			$("*[data-store]").each(function () {
 				$(this).val(localStorage.getItem("event-" + $(this).attr("data-store")));
+				var datastoreat = this;
+				console.log(datastoreat);
 			});
 			
 
@@ -105,11 +107,10 @@
 			
 			var buttonarray = document.getElementsByClassName("editbtn")
 			for (i=0; i<buttonarray.length; i++) {
-				buttonarray[i].addEventListener("click", function (itm) {
+				buttonarray[i].addEventListener("click", function () {
 				var ds = ($("*[data-store]"))
 				for (i=0; i<ds.length; i++) {
-					localStorage.setItem ("event-" + i, ds[i].value
-					)}
+					localStorage.setItem ("event-" + i, ds[i].value)}
 				
 				}) 
 			}
