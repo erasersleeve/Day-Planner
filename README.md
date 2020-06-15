@@ -54,9 +54,9 @@ Link to github: https://github.com/erasersleeve/Day-Planner
 
 ## ScreenShots
 
-![1](https://github.com/erasersleeve/Day-Planner/blob/master/Assets/desktop.png)
+![1]()
 
-![2](https://github.com/erasersleeve/Day-Planner/blob/master/Assets/tablet.png)
+![2]()
 
-![3](https://github.com/erasersleeve/Day-Planner/blob/master/Assets/mobile.png)
+![3]()
 
