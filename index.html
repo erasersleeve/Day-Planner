@@ -36,8 +36,6 @@
 				<table class="table text-light">
 					<thead>
 						<tr>
-						<!--How do I change the size of the middle column? Adding col sizes with grid doesn't work  -->
-						<!-- tried these w classes, is this the best way? -->
 							<th class="w-15" scope="col">Time</th>
 							<th class="w-75" scope="col">Events</th>
 							<th class="w-20 " scope="col">Buttons</th>
@@ -140,7 +138,7 @@
 		function getDate() {
 			//format("LL") gets rid of the extra information from momentjs.
 			var now = moment().format("LL");
-			console.log(now);
+			
 			$("#currentDay").text(now)
 		}
 		function getTime () {
@@ -151,7 +149,7 @@
 		//grabs the hour. format(H) gives an interger fo hour from 1 to 24
 		
 		var hour = moment().format("H");
-		console.log(hour);
+		
 		
 		// //to color past and future
 
