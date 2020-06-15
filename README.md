@@ -53,3 +53,6 @@ Link to deployed application: https://erasersleeve.github.io/Day-Planner/
 Link to github: https://github.com/erasersleeve/Day-Planner
 
 ## ScreenShots
+![1]
+![2]
+![3]
