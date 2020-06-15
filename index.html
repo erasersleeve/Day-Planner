@@ -42,47 +42,47 @@
 						</tr>
 					</thead>
 					<tbody>
-						<tr>
+						<tr id="9" class="timeblock">
 							<td>9am</td>
 							<td> <input class="form-control" data-store="1" placeholder="Add Your Event Here"></input></td>
 							<td><button class="editbtn btn btn-outline-dark">Save Changes</button></td>
 						</tr>
-						<tr>
+						<tr id="10" class="timeblock">
 							<td>10am</td>
 							<td><input class="form-control" data-store="2" placeholder="Add Your Event Here"></td>
 							<td><button class="editbtn btn btn-outline-dark">Save Changes</button></td>
 						</tr>
-						<tr>
+						<tr id="11" class="timeblock">
 							<td>11am</td>
 							<td><input class="form-control" data-store="3" placeholder="Add Your Event Here"></td>
 							<td><button class="editbtn btn btn-outline-dark">Save Changes</button></td>
 						</tr>
-						<tr>
+						<tr id="12" class="timeblock">
 							<td>12pm</td>
 							<td><input class="form-control" data-store="4" placeholder="Add Your Event Here"></td>
 							<td><button class="editbtn btn btn-outline-dark">Save Changes</button></td>
 						</tr>
-						<tr>
+						<tr id="13" class="timeblock">
 							<td>1pm</td>
 							<td><input class="form-control" data-store="5" placeholder="Add Your Event Here"></td>
 							<td><button class="editbtn btn btn-outline-dark">Save Changes</button></td>
 						</tr>
-						<tr>
+						<tr id="14" class="timeblock">
 							<td>2pm</td>
 							<td><input class="form-control" data-store="6" placeholder="Add Your Event Here"></td>
 							<td><button class="editbtn btn btn-outline-dark">Save Changes</button></td>
 						</tr>
-						<tr>
+						<tr id="15" class="timeblock">
 							<td>3pm</td>
 							<td><input class="form-control" data-store="7" placeholder="Add Your Event Here"></td>
 							<td><button class="editbtn btn btn-outline-dark">Save Changes</button></td>
 						</tr>
-						<tr>
+						<tr id="16" class="timeblock">
 							<td>4pm</td>
 							<td><input class="form-control" data-store="8" placeholder="Add Your Event Here"></td>
 							<td><button class="editbtn btn btn-outline-dark">Save Changes</button></td>
 						</tr>
-						<tr>
+						<tr id="17" class="timeblock">
 							<td>5pm</td>
 							<td><input class="form-control" data-store="9" placeholder="Add Your Event Here"></td>
 							<td><button class="editbtn btn btn-outline-dark">Save Changes</button></td>
@@ -95,49 +95,77 @@
 		<script type ="text/javascript">
 		//currently saves all feilds on click, not just own row. If a save button is clicked when there is no changes.. it will move all saved data down by one row.
 		    //sets the text areas to their appropriate local data if applicable
-				$(document).ready (function () {
-					$("*[data-store]").each(function () {
-						$(this).val(localStorage.getItem("event-" + $(this).attr("data-store")));
-					});
-					
+		$(document).ready (function () {
+			$("*[data-store]").each(function () {
+				$(this).val(localStorage.getItem("event-" + $(this).attr("data-store")));
+			});
+			
 
 
-					
-					var buttonarray = document.getElementsByClassName("editbtn")
-					for (i=0; i<buttonarray.length; i++) {
-						buttonarray[i].addEventListener("click", function (itm) {
-						var ds = ($("*[data-store]"))
-						for (i=0; i<ds.length; i++) {
-							localStorage.setItem ("event-" + i, ds[i].value
-							)}
-						
-						}) 
-					}
-
-
-					
-
-
-					//set var = array of buttons
-					//set for loop to cycle through the buttons and assign on click
-				//on "keyup" saves text input to local data. Saves as soon as input is finished
-				// $("*[data-store]").on("keyup", function (itm) {
-       	 		// localStorage.setItem ("item-" + $(this).attr("data-store"), $(this).val());
-      			// })
-
-				})
+			
+			var buttonarray = document.getElementsByClassName("editbtn")
+			for (i=0; i<buttonarray.length; i++) {
+				buttonarray[i].addEventListener("click", function (itm) {
+				var ds = ($("*[data-store]"))
+				for (i=0; i<ds.length; i++) {
+					localStorage.setItem ("event-" + i, ds[i].value
+					)}
 				
+				}) 
+			}
+		//on "keyup" saves text input to local data. Saves as soon as input is finished
+		// $("*[data-store]").on("keyup", function (itm) {
+		// localStorage.setItem ("item-" + $(this).attr("data-store"), $(this).val());
+		// })
 
-				//grabs the date from moment.js and sets it to the appropriate class
-				getDate();
-				function getDate(calendertime) {
-					//format("LL") gets rid of the extra information from momentjs.
-					var now = moment().format("LL");
-					console.log(now);
-					$("#currentDay").text(now)
-				}
+		})
+		
 
+		//grabs the date from moment.js and sets it to the appropriate class
+		getDate();
+		function getDate() {
+			//format("LL") gets rid of the extra information from momentjs.
+			var now = moment().format("LL");
+			console.log(now);
+			$("#currentDay").text(now)
+		}
+	
+		//grabs the hour. format(H) gives an interger fo hour from 1 to 24
+		
+		var hour = moment().format("H");
+		console.log(hour);
+		
+		// //to color past and future
 
+		const rows = $(".timeblock");
+		let currentHour = parseInt(moment().format("H"));
+
+		Array.from(rows).forEach(row => {
+		let
+			rowIdString = row.id,
+			rowHour;
+		if (rowIdString) {
+			rowHour = parseInt(rowIdString);
+			console.log(rowHour)
+		}
+		if (rowHour) {
+			// Compares row id to current hour and sets color accordingly
+			if (currentHour === rowHour) {
+			setColor(row, "green");
+			} else if (currentHour < rowHour) {
+			setColor(row, "blue");
+			} else if (currentHour > rowHour) {
+			setColor(row, "red");
+			} else {
+			setColor(row, "white");
+			}
+		}
+		});
+
+function setColor(element, color) {
+  element.style.backgroundColor = color;
+}
+		
 		</script>
 	
 	</body>
